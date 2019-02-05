@@ -7,6 +7,12 @@ import PowerMechanic from '../db/models/power-mechanic.model';
 // all routes defiend with this object will imply /movies
 export const characterRouter = express.Router(); // routers represent a subset of routes for the express application
 
+
+const includeAll = [
+  { model: CharacterStats },
+  { model: Power, include: [PowerMechanic] },
+];
+
 /**
  * Find character by id
  */
@@ -15,10 +21,7 @@ characterRouter.get('/:id', async (req, res) => {
   console.log(`retreiving character with id  ${id}`);
   try {
     const character = await Character.findByPk(id, {
-      include: [
-        { model: CharacterStats },
-        { model: Power, include: [PowerMechanic] },
-      ]
+      include: includeAll
     });
     res.json(character);
   } catch (err) {
@@ -33,7 +36,18 @@ characterRouter.get('/:id', async (req, res) => {
 characterRouter.get('/email/:email', async (req, res) => {
   const email = req.params.email;
   console.log(`retreiving character with email  ${email}`);
-  res.sendStatus(501);
+  try {
+    const characters = await Character.findAll({
+      where: {
+        creator: email
+      },
+      include: includeAll
+    });
+    res.json(characters);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(501);
+  }
 });
 
 /**
@@ -41,6 +55,16 @@ characterRouter.get('/email/:email', async (req, res) => {
  */
 characterRouter.post('', async (req, res) => {
   console.log('creating character');
-  res.sendStatus(501);
+  const character = req.body;
+  try {
+    const char = await Character.create(character, {
+      include: [CharacterStats, Power]
+    });
+    res.status(201);
+    res.json(char);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 });
 

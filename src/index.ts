@@ -2,9 +2,10 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import { characterRouter } from './routers/character-router';
+import { characterRouter } from './routers/character.router';
 
 import './db';
+import { characterStatsRouter } from './routers/character-stats.router';
 // create the app object from express
 const app = express();
 
@@ -37,6 +38,7 @@ app.use((req, resp, next) => {
  * API Routers
  ********************************************************************************************/
 app.use('/characters', characterRouter);
+app.use('/character-stats', characterStatsRouter);
 
 
 app.listen(port, () => {

@@ -21,16 +21,6 @@ export default class Character extends Model<Character> {
   public stats: CharacterStats;
 
   @HasMany(() => Power)
-  public powers: Power;
+  public powers: Power[];
 
-
-
-
-  // constructor(id = 0, name = '', rank = 0, mechanic?: PowerMechanic) {
-  //   super();
-  //   this.id = id;
-  //   this.name = name;
-  //   this.rank = rank;
-  //   this.mechanic = mechanic ? mechanic : new PowerMechanic();
-  // }
 }

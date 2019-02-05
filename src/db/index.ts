@@ -7,7 +7,7 @@ const database = process.env.ORIGIN_DB_DATABASE || 'postgres';
 const port = +process.env.ORIGIN_DB_PORT || 5432;
 const dialect = 'postgres';
 
-const url = `${dialect}://${username}:${password}@${host}:${port}/${database}?currentSchema=origin`;
+const url = `${dialect}://${username}:${password}@${host}:${port}/${database}`;
 
 export const sequelize = new Sequelize({
   url,
@@ -19,10 +19,10 @@ export const sequelize = new Sequelize({
 
 sequelize.addModels([]);
 
-sequelize.sync({alter: true})
-  .then(() => {})
-  .catch(err => {
-    console.log(err);
-  });
+// sequelize.sync({alter: true})
+//   .then(() => {})
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 

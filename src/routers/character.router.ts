@@ -31,11 +31,11 @@ characterRouter.get('/:id', async (req, res) => {
 });
 
 /**
- * Find character by email
+ * Find character by creators email
  */
-characterRouter.get('/email/:email', async (req, res) => {
+characterRouter.get('/creator/:email', async (req, res) => {
   const email = req.params.email;
-  console.log(`retreiving character with email  ${email}`);
+  console.log(`retreiving characters with creators email:  ${email}`);
   try {
     const characters = await Character.findAll({
       where: {

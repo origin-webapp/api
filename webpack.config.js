@@ -10,11 +10,13 @@ module.exports = {
   // Is needed to have in compiled output imports Node.JS can understand. Quick search gives you more info
   target: 'node',
   // Prevents warnings from TypeScript compiler
- externals: [
-    nodeExternals({
-      whitelist: ['webpack/hot/poll?100'],
-    }),
+  externals: [
+    {
+      // "webpack/hot/poll?100": 'webpack/hot/poll?100',
+      "tedious": "tedious"
+    },
   ],
+
   module: {
     rules: [
       {
@@ -27,6 +29,10 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    // alias: {
+    //   'pg-native': path.join(__dirname, 'aliases/pg-native.js'),
+    //   'pgpass$': path.join(__dirname, 'aliases/pgpass.js'),
+    // },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

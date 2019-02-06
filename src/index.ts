@@ -10,7 +10,7 @@ import { characterStatsRouter } from './routers/character-stats.router';
 const app = express();
 
 // set the port
-const port = process.env.ORIGIN_PORT || 5500; // will use port from computers environment variables or 3000 if there is none
+const port = process.env.PORT || 5500; // will use port from computers environment variables or 3000 if there is none
 app.set('port', port);
 
 // log the request being made

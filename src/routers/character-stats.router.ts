@@ -12,12 +12,14 @@ characterStatsRouter.patch('', async (req, res) => {
   const statsProvided = req.body;
   try {
     const dbStats = await CharacterStats.findByPk(statsProvided.id);
-    dbStats.update({
-      statsProvided
-    });
+    await dbStats.update(statsProvided);
     res.json(dbStats);
   } catch (err) {
     console.log(err);
+    if (err.name === 'SequelizeValidationError') {
+      res.status(400);
+      res.json(err.errors);
+    }
     res.sendStatus(500);
   }
 });

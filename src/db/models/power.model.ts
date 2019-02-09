@@ -1,4 +1,4 @@
-import {  PrimaryKey, AutoIncrement, Column, DataType, Table, Model, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import {  PrimaryKey, AutoIncrement, Column, DataType, Table, Model, ForeignKey, BelongsTo, AllowNull } from 'sequelize-typescript';
 import PowerMechanic from './power-mechanic.model';
 import Character from './character.model';
 
@@ -11,12 +11,14 @@ export default class Power extends Model<Power> {
   @Column(DataType.INTEGER)
   public id: number;
 
+  @AllowNull(false)
   @Column
   public name: string;
 
   @Column
   public rank: number;
 
+  @AllowNull(false)
   @ForeignKey(() => PowerMechanic)
   @Column
   public mechanicId: number;
@@ -25,6 +27,7 @@ export default class Power extends Model<Power> {
   public mechanic: PowerMechanic;
 
 
+  @AllowNull(false)
   @ForeignKey(() => Character)
   @Column
   public characterId: number;

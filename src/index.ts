@@ -6,6 +6,8 @@ import { characterRouter } from './routers/character.router';
 
 import './db';
 import { characterStatsRouter } from './routers/character-stats.router';
+import { powerRouter } from './routers/power.router';
+import { powerMechanicRouter } from './routers/power-mechanic.router';
 // create the app object from express
 const app = express();
 
@@ -32,6 +34,7 @@ app.use((req, resp, next) => {
   resp.header('Access-Control-Allow-Origin', '*');
   resp.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   resp.header('Access-Control-Allow-Credentials', 'true');
+  resp.header('Access-Control-Allow-Methods', 'POST, GET, PUT, PATCH, DELETE, OPTIONS');
   next();
 });
 /*********************************************************************************************
@@ -39,7 +42,13 @@ app.use((req, resp, next) => {
  ********************************************************************************************/
 app.use('/characters', characterRouter);
 app.use('/character-stats', characterStatsRouter);
+app.use('/powers', powerRouter);
+app.use('/power-mechanics', powerMechanicRouter);
 
+
+app.get('/health', (req, res) => {
+  res.sendStatus(200);
+});
 
 app.listen(port, () => {
   console.log(`App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);

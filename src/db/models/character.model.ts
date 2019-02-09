@@ -1,4 +1,4 @@
-import {  PrimaryKey, AutoIncrement, Column, DataType, Table, Model, HasOne, HasMany } from 'sequelize-typescript';
+import {  PrimaryKey, AutoIncrement, Column, DataType, Table, Model, HasOne, HasMany, AllowNull } from 'sequelize-typescript';
 import CharacterStats from './character-stats.model';
 import Power from './power.model';
 
@@ -11,9 +11,11 @@ export default class Character extends Model<Character> {
   @Column(DataType.INTEGER)
   public id: number;
 
+  @AllowNull(false)
   @Column
   public name: string;
 
+  @AllowNull(false)
   @Column
   public creator: string; // email of the person who this character belongs to
 

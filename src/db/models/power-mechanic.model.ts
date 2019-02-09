@@ -1,4 +1,4 @@
-import {  PrimaryKey, AutoIncrement, Column, DataType, Table, NotNull, Model, HasMany } from 'sequelize-typescript';
+import {  PrimaryKey, AutoIncrement, Column, DataType, Table, Model, HasMany, AllowNull } from 'sequelize-typescript';
 import Power from './power.model';
 
 
@@ -9,7 +9,7 @@ export default class PowerMechanic extends Model<PowerMechanic> {
   @Column(DataType.INTEGER)
   public id: number;
 
-  @NotNull
+  @AllowNull(false)
   @Column
   public name: string;
 

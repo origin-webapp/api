@@ -18,6 +18,26 @@ powerMechanicRouter.get('', async (req, res) => {
 });
 
 /**
+ * Create Power Mechanic
+ */
+powerMechanicRouter.post('', async (req, res) => {
+  const mechanicProvided = req.body;
+  try {
+    await PowerMechanic.create(mechanicProvided);
+    res.json(mechanicProvided);
+  } catch (err) {
+    console.log(err);
+    if (err.name === 'SequelizeValidationError') {
+      res.status(400);
+      res.json(err.errors);
+    }
+    else {
+      res.sendStatus(500);
+    }
+  }
+})
+
+/**
  * Update Power Mechanic
  */
 powerMechanicRouter.patch('', async (req, res) => {

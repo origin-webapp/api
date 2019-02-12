@@ -12,6 +12,7 @@ powerRouter.patch('', async (req, res) => {
   console.log('updating power info');
   const powerProvided = req.body;
   try {
+    console.log(powerProvided);
     const dbStats = await Power.findByPk(powerProvided.id);
     await dbStats.update(powerProvided);
     res.json(dbStats);

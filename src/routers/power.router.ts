@@ -26,3 +26,48 @@ powerRouter.patch('', async (req, res) => {
   }
 });
 
+
+/**
+ * Create Power
+ */
+powerRouter.post('', async (req, res) => {
+  const powerProvided = req.body;
+  try {
+    const createdPower = await Power.create(powerProvided);
+    res.status(201);
+    res.json(createdPower);
+  } catch (err) {
+    console.log(err);
+    if (err.name === 'SequelizeValidationError') {
+      res.status(400);
+      res.json(err.errors);
+    }
+    else {
+      res.sendStatus(500);
+    }
+  }
+});
+
+
+/**
+ * Delete Power
+ */
+powerRouter.delete('/:id', async (req, res) => {
+  const powerId = +req.params.id;
+  try {
+    const power = await Power.findByPk(powerId);
+    if (power) {
+      await power.destroy();
+    }
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    if (err.name === 'SequelizeValidationError') {
+      res.status(400);
+      res.json(err.errors);
+    }
+    else {
+      res.sendStatus(500);
+    }
+  }
+});

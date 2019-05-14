@@ -11,14 +11,12 @@ export default class Power extends Model<Power> {
   @Column(DataType.INTEGER)
   public id: number;
 
-  @AllowNull(false)
   @Column
   public name: string;
 
   @Column
   public rank: number;
 
-  @AllowNull(false)
   @ForeignKey(() => PowerMechanic)
   @Column
   public mechanicId: number;

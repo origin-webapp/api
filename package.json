@@ -5,6 +5,7 @@
   "main": "src index.ts",
   "scripts": {
     "start": "nodemon --exec ts-node -- src/index.ts",
+    "start:create": "cross-env ORIGIN_DB_CREATE=true npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "ts-node src/index.ts",
     "build": "webpack --config webpack.config.js"
@@ -25,6 +26,7 @@
     "@types/node": "^10.12.21",
     "@types/pg": "^7.4.11",
     "@types/sequelize": "^4.27.34",
+    "cross-env": "^5.2.0",
     "nodemon": "^1.18.9",
     "ts-loader": "^5.3.3",
     "ts-node": "^7.0.1",

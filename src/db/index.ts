@@ -6,7 +6,7 @@ const password = process.env.ORIGIN_DB_PASSWORD;
 const database = process.env.ORIGIN_DB_DATABASE || 'postgres';
 const port = +process.env.ORIGIN_DB_PORT || 5432;
 const dialect = 'postgres';
-const createDb = process.env.ORIGIN_DB_CREATE || false;
+const createDb = process.env.ORIGIN_DB_CREATE ? (process.env.ORIGIN_DB_CREATE.toLowerCase() === 'true') : false;
 
 const url = `${dialect}://${username}:${password}@${host}:${port}/${database}`;
 

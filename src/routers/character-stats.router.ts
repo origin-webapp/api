@@ -1,7 +1,7 @@
 import express from 'express';
 import CharacterStats from '../db/models/character-stats.model';
 
-// all routes defiend with this object will imply /movies
+// all routes defiend with this object will imply /character-stats
 export const characterStatsRouter = express.Router(); // routers represent a subset of routes for the express application
 
 /**

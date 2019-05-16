@@ -1,7 +1,7 @@
 import express from 'express';
 import PowerMechanic from '../db/models/power-mechanic.model';
 
-// all routes defiend with this object will imply /movies
+// all routes defiend with this object will imply /power-mechanics
 export const powerMechanicRouter = express.Router(); // routers represent a subset of routes for the express application
 
 

@@ -4,7 +4,7 @@ import CharacterStats from '../db/models/character-stats.model';
 import Power from '../db/models/power.model';
 import PowerMechanic from '../db/models/power-mechanic.model';
 
-// all routes defiend with this object will imply /movies
+// all routes defiend with this object will imply /characters
 export const characterRouter = express.Router(); // routers represent a subset of routes for the express application
 
 
@@ -41,7 +41,10 @@ characterRouter.get('/creator/:email', async (req, res) => {
       where: {
         creator: email
       },
-      include: includeAll
+      include: includeAll,
+      order: [
+        ['powers', 'name', 'asc'],
+      ]
     });
     res.json(characters);
   } catch (err) {

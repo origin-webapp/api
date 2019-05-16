@@ -1,7 +1,8 @@
 import express from 'express';
 import Power from '../db/models/power.model';
+import PowerMechanic from '../db/models/power-mechanic.model';
 
-// all routes defiend with this object will imply /movies
+// all routes defiend with this object will imply /powers
 export const powerRouter = express.Router(); // routers represent a subset of routes for the express application
 
 
@@ -13,9 +14,11 @@ powerRouter.patch('', async (req, res) => {
   const powerProvided = req.body;
   try {
     console.log(powerProvided);
-    const dbStats = await Power.findByPk(powerProvided.id);
-    await dbStats.update(powerProvided);
-    res.json(dbStats);
+    let retreivedPower = await Power.findByPk(powerProvided.id);
+    await retreivedPower.update(powerProvided);
+
+    retreivedPower = await Power.findByPk(powerProvided.id, {include: [{model: PowerMechanic}]});
+    res.json(retreivedPower);
   } catch (err) {
     console.log(err);
     if (err.name === 'SequelizeValidationError') {

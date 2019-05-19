@@ -71,3 +71,48 @@ characterRouter.post('', async (req, res) => {
   }
 });
 
+/**
+ * Update Character
+ */
+characterRouter.patch('', async (req, res) => {
+  console.log('updating character');
+  const characterProvided = req.body;
+  try {
+    const dbStats = await Character.findByPk(characterProvided.id);
+    await dbStats.update(characterProvided);
+    const updatedCharacter = await Character.findByPk(characterProvided.id, {
+      include: includeAll
+    });
+    res.json(updatedCharacter);
+  } catch (err) {
+    console.log(err);
+    if (err.name === 'SequelizeValidationError') {
+      res.status(400);
+      res.json(err.errors);
+    }
+    res.sendStatus(500);
+  }
+});
+
+/**
+ * Delete Character
+ */
+characterRouter.delete('/:id', async (req, res) => {
+  console.log('deleting character');
+  const id = +req.params.id;
+  try {
+    await Character.destroy({
+      where: {
+        id
+      }
+    });
+    res.sendStatus(204);
+  } catch (err) {
+    console.log(err);
+    if (err.name === 'SequelizeValidationError') {
+      res.status(400);
+      res.json(err.errors);
+    }
+    res.sendStatus(500);
+  }
+});

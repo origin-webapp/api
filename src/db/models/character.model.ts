@@ -19,6 +19,12 @@ export default class Character extends Model<Character> {
   @Column
   public creator: string; // email of the person who this character belongs to
 
+  @Column
+  public well_multiplier: number;
+
+  @Column
+  public karma: number;
+
   @HasOne(() => CharacterStats)
   public stats: CharacterStats;
 

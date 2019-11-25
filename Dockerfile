@@ -13,10 +13,10 @@ COPY . .
 
 # Port this is just specifing what ports should be accessible
 # the -p command while running the container to publish the port
-EXPOSE 3000
+EXPOSE 5500
 
 # Set up environment variables, you could also use ARG and require those arguments to be passed into the dockerfile from the host
-ENV PORT 3000
+ENV PORT 5500
 
 # execute this line when instance is created form the image
 # could also use ENTRYPOINT

@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-svc
+  name: origin-svc
   labels:
     app: web
 spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 5500
   selector:
     app: web

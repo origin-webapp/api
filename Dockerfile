@@ -1,5 +1,5 @@
 # First line is FROM what base image
-FROM node:8
+FROM node:10
 
 # Copy package JSONfile from our machine into the docker container
 # The * just ensures package and package-lock are copied

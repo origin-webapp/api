@@ -23,7 +23,7 @@ spec:
         - containerPort: 5500
         resources:
           requests:
-            cpu: 0.8
+            cpu: 0.5
 
 ---
 apiVersion: v1

@@ -21,9 +21,6 @@ spec:
         name: origin-api-ctr
         ports:
         - containerPort: 5500
-        resources:
-          requests:
-            cpu: 0.5
 
 ---
 apiVersion: v1

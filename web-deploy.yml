@@ -17,7 +17,7 @@ spec:
         app: origin-api
     spec:
       containers:
-      - image: btkruppa/origin:0.0.1
+      - image: 'gcr.io/$PROJECT_ID/hello-cloudbuild:$SHORT_SHA'
         name: origin-api-ctr
         ports:
         - containerPort: 5500

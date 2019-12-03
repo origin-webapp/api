@@ -21,11 +21,11 @@ spec:
         name: origin-api-ctr
         ports:
         - containerPort: 5500
-        resources:
-          requests:
-            cpu: 0.3
-          limits: 
-            cpu: 0.5
+        # resources:
+        #   requests:
+        #     cpu: 0.3
+        #   limits: 
+        #     cpu: 0.5
         env:
           - name: ORIGIN_DB_HOST
             valueFrom:

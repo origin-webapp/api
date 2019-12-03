@@ -21,6 +21,32 @@ spec:
         name: origin-api-ctr
         ports:
         - containerPort: 5500
+        resources:
+          requests:
+            cpu: 0.2
+          limits: 
+            cpu: 0.5
+        env:
+          - name: ORIGIN_DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: db-host
+          - name: ORIGIN_DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: db-username
+          - name: ORIGIN_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: db-password
+          - name: ORIGIN_DB_SCHEMA
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: db-schema
 
 ---
 apiVersion: v1

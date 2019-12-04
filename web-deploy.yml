@@ -26,6 +26,10 @@ spec:
         #     cpu: 0.3
         #   limits: 
         #     cpu: 0.5
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
         env:
           - name: ORIGIN_DB_HOST
             valueFrom:

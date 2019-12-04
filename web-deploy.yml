@@ -17,7 +17,7 @@ spec:
         app: origin-api
     spec:
       containers:
-      - image: gcr.io/$PROJECT_ID/origin-api:latest
+      - image: 'gcr.io/$PROJECT_ID/origin-api:latest'
         name: origin-api-ctr
         ports:
         - containerPort: 5500

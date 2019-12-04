@@ -17,7 +17,7 @@ spec:
         app: origin-api
     spec:
       containers:
-      - image: gcr.io/$PROJECT_ID/hello-cloudbuild:latest
+      - image: gcr.io/$PROJECT_ID/origin-api:latest
         name: origin-api-ctr
         ports:
         - containerPort: 5500
@@ -47,7 +47,21 @@ spec:
               secretKeyRef:
                 name: mysecret
                 key: db-schema
-
+      - image: gcr.io/cloudsql-docker/gce-proxy:1.14
+      name: cloudsql-proxy
+      command: ["/cloud_sql_proxy",
+                "-instances=origin-259413:us-central1:origin-db=tcp:3306",
+                # If running on a VPC, the Cloud SQL proxy can connect via Private IP. See:
+                # https://cloud.google.com/sql/docs/mysql/private-ip for more info.
+                # "-ip_address_types=PRIVATE",
+                "-credential_file=/secrets/cloudsql/credentials.json"]
+      securityContext:
+        runAsUser: 2  # non-root user
+        allowPrivilegeEscalation: false
+      volumeMounts:
+        - name: cloudsql-instance-credentials
+          mountPath: /secrets/cloudsql
+          readOnly: true
 ---
 apiVersion: v1
 kind: Service

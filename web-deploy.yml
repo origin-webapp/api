@@ -17,7 +17,7 @@ spec:
         app: origin-api
     spec:
       containers:
-      - image: 'gcr.io/$PROJECT_ID/hello-cloudbuild:latest'
+      - image: gcr.io/$PROJECT_ID/hello-cloudbuild:latest
         name: origin-api-ctr
         ports:
         - containerPort: 5500
